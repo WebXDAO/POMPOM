@@ -67,10 +67,6 @@ const Account = ({ props }) => {
         <span className="px-4 text-sm text-black font-bold">
          { props.state.error }
         </span>
-
-        {/* We can add add Blockies here 
-        rq: https://github.com/stephensprinkle-zz/react-blockies */}
-        <div className="rounded-full h-8 w-8 flex items-center justify-center bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
       </div>
     );
   }
