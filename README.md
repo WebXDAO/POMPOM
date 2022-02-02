@@ -1,3 +1,9 @@
+# POMPOM - Proof of Meeting
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/50140834/152072296-6e6b7abc-3993-4783-b7c0-61f5bbfb23d7.png" alt="animated" />
+</p>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
