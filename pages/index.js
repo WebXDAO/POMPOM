@@ -1,37 +1,50 @@
-import Head from "next/head";
-import Navbar from "../components/Navbar";
-import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/userSlice";
+import LandingLayout from "../layouts/LandingLayout";
 
+// demo
+
+import {
+  AnnotationIcon,
+  ChatAlt2Icon,
+  ChatAltIcon,
+  DocumentReportIcon,
+  HeartIcon,
+  InboxIcon,
+  PencilAltIcon,
+  QuestionMarkCircleIcon,
+  ReplyIcon,
+  TrashIcon,
+  UsersIcon,
+} from "@heroicons/react/outline";
+import Hero from "../components/landing/Hero";
+import Intro from "../components/landing/Intro";
+import Features from "../components/landing/Features";
+import Hero2 from "../components/landing/Hero2";
+import Features2 from "../components/landing/Intro";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+/**
+ * Info: LandingLayout contain Navbar and Footer components
+ * @returns 
+ */
 export default function Home() {
-  const userStore = useSelector(selectUser);
-
   return (
-    <div className="h-screen">
-      <Head>
-        <title>PomPom - Proof of Meeting</title>
-        <meta name="description" content="PomPom - Proof of Meeting" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
-      </Head>
+    <LandingLayout>
+      {/* You can try both Heros components.. i don't know which is better */}
+      {/* <Hero></Hero> */}
+      <Hero2></Hero2>
 
-      <Navbar></Navbar>
+      <Intro></Intro>
 
-      <main className="">
+      <Features></Features>
 
-        {/* 
-          Landing page
-        */}
-
-        {userStore.walletAddress != null && (
-          <div className="grid place-items-center h-screen bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400">
-            <span className="text-2xl animate-bounce">🍭 {userStore.walletAddress}</span>
-          </div>
-        )}
-      </main>
-    </div>
+      {/* Timeline ? */}
+    </LandingLayout>
   );
 }
