@@ -3,7 +3,6 @@ import {
   EmojiHappyIcon,
   StarIcon,
 } from "@heroicons/react/outline";
-import Emoji from "../Emoji";
 
 const Hero = () => {
   return (

@@ -8,6 +8,7 @@ import {
 import { uuid } from "uuidv4";
 import { connect } from "react-redux";
 import { getEllipsisTxt } from "../helpers/formatters";
+import Link from "next/link";
 
 async function login() {
   if (!window.ethereum) {
@@ -29,7 +30,6 @@ async function login() {
 
   // Ask signature if first time user
   if (!signer._isSigner) {
-
     // security: we would need to fetch a backend to get a generated random uuid
     // const signatureNumbers = fetch(our_api_url:api_port/get_nonce)
 
@@ -44,45 +44,53 @@ async function login() {
 }
 
 const Account = ({ props }) => {
-
   // show wallet address if user is authenticated
   if (props.state.isAuthenticated) {
     return (
-      <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
-        <span className="px-4 text-sm text-black font-bold">
-          {getEllipsisTxt(props.state.walletAddress, 6)}
-        </span>
+      <div className="flex">
+        <button className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+          <span className="px-4 text-sm text-black font-bold">
+            {getEllipsisTxt(props.state.walletAddress, 6)}
+          </span>
 
-        {/* We can add add Blockies here 
+          {/* We can add add Blockies here 
         rq: https://github.com/stephensprinkle-zz/react-blockies */}
-        <div className="rounded-full h-8 w-8 flex items-center justify-center bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
+          <div className="rounded-full h-8 w-8 flex items-center justify-center bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
+        </button>
+        <button className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+          <Link href="/dashboard">
+            <a className="ml-6 inline-flex items-center px-4 py-2 text-baseline font-medium rounded-md shadow-sm text-white  bg-gradient-to-r from-logocyan to-logopink hover:bg-gradient-to-r hover:from-teal-400 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+              Dashboard
+            </a>
+          </Link>
+        </button>
       </div>
     );
-  } 
+  }
 
   // show error if no Metamask wallet plugin
   if (props.state.error != null) {
     return (
-      <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+      <button className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
         <span className="px-4 text-sm text-black font-bold">
-         { props.state.error }
+          {props.state.error}
         </span>
-      </div>
+      </button>
     );
   }
-  
+
   // show login button if user is not authenticated
   else {
     return (
-      <div className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
+      <button className="hidden lg:flex lg:items-center lg:justify-end xl:col-span-4">
         <a
           onClick={login}
           href="#"
-          className="ml-6 inline-flex items-center px-4 py-2  text-sm font-medium rounded-md shadow-sm text-white bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+          className="ml-6 inline-flex items-center px-4 py-2 text-baseline font-medium rounded-md shadow-sm text-white  bg-gradient-to-r from-logocyan to-logopink hover:bg-gradient-to-r hover:from-teal-400 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
         >
           Connect Wallet
         </a>
-      </div>
+      </button>
     );
   }
 };
