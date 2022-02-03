@@ -5,7 +5,7 @@ import store from "../store/store";
 function MyApp({ Component, pageProps }) {
   return (
     <ReduxProvider  store={store}>
-      <Component className="h-screen" {...pageProps} />
+      <Component {...pageProps} />
     </ReduxProvider>
   );
 }

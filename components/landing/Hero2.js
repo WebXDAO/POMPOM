@@ -1,13 +1,50 @@
+import { ethers } from "ethers";
 import Link from "next/link";
+import { connect } from "react-redux";
+import store from "../../store/store";
+import { setError, setIsAuthenticated, setWalletAddress } from "../../store/userSlice";
 
-export default function Hero2() {
+
+async function login() {
+  if (!window.ethereum) {
+    // setLoginState("No Metamask wallet... Please install it.");
+    store.dispatch(setIsAuthenticated(false));
+    store.dispatch(setError("No Metamask wallet... Please install it."));
+    return;
+  }
+
+  // Prompt user for account connections
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  await provider.send("eth_requestAccounts", []);
+  const signer = provider.getSigner();
+  const walletAddr = await signer.getAddress();
+
+  // Set address state to userStore
+  store.dispatch(setWalletAddress(walletAddr));
+  store.dispatch(setIsAuthenticated(true));
+
+  // Ask signature if first time user
+  if (!signer._isSigner) {
+    // security: we would need to fetch a backend to get a generated random uuid
+    // const signatureNumbers = fetch(our_api_url:api_port/get_nonce)
+
+    // clientside hack :
+    const signatureNumbers = uuid();
+
+    // Ask for signature
+    const signature = await signer.signMessage(
+      "Welcome to PomPom - uuid: " + signatureNumbers
+    );
+  }
+}
+
+function Hero2({ props }) {
   return (
     <div className="relative bg-white overflow-hidden">
       <div className="relative py-24 sm:pb-24 lg:pb-32">
         <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6 lg:mt-32 lg:mb-32">
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-
               <h1>
                 <div>
                   <a href="#" className="inline-flex space-x-4">
@@ -25,13 +62,29 @@ export default function Hero2() {
                 sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
                 fugiat veniam occaecat fugiat aliqua ad ad non deserunt sunt.
               </p>
-              <div className="mt-6">
-                <Link href="/dashboard">
-                  <a className="inline-flex bg-gradient-to-r from-logocyan to-logopink hover:bg-gradient-to-r hover:from-teal-400 hover:to-pink-500 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white">
-                    Create event
-                  </a>
-                </Link>
-              </div>
+
+              {/* Show if not authenticated */}
+              {!props.state.isAuthenticated && (
+                <div className="mt-6">
+                  <button
+                    onClick={login}
+                    className="inline-flex bg-gradient-to-r from-logocyan to-logopink hover:bg-gradient-to-r hover:from-teal-400 hover:to-pink-500 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white"
+                  >
+                    Connect wallet
+                  </button>
+                </div>
+              )}
+
+              {/* Show if authenticated */}
+              {props.state.isAuthenticated && (
+                <div className="mt-6">
+                  <Link href="/dashboard">
+                    <a className="inline-flex bg-gradient-to-r from-logocyan to-logopink hover:bg-gradient-to-r hover:from-teal-400 hover:to-pink-500 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white">
+                      Create event
+                    </a>
+                  </Link>
+                </div>
+              )}
             </div>
 
             {/* Shape */}
@@ -112,3 +165,10 @@ export default function Hero2() {
     </div>
   );
 }
+
+const mapStateToProps = function () {
+  const state = store.getState();
+  return { props: { state: state.user } };
+};
+
+export default connect(mapStateToProps)(Hero2);

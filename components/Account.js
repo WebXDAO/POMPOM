@@ -44,6 +44,7 @@ async function login() {
 }
 
 const Account = ({ props }) => {
+  
   // show wallet address if user is authenticated
   if (props.state.isAuthenticated) {
     return (
