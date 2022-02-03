@@ -58,7 +58,7 @@ export default function NFTForm() {
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
                 <h3 className="text-lg font-medium leading-6 text-gray-900">
-                  Mint your Meet ✨
+                  Mint your POM ✨
                 </h3>
                 <p className="mt-1 text-sm text-gray-600">
                   To make your event live, type your event informations in this
@@ -71,7 +71,7 @@ export default function NFTForm() {
             </div>
             <div className="mt-5 md:mt-0 md:col-span-2">
               <form method="POST" onSubmit={mintNft}>
-                <div className="shadow overflow-hidden sm:rounded-md">
+                <div className="shadow-lg overflow-hidden sm:rounded-md">
                   <div className="px-4 py-5 bg-white sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6">

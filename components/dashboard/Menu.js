@@ -35,7 +35,7 @@ const Menu = () => {
               href="#"
               className="ml-6 inline-flex items-center px-4 py-2 text-baseline font-medium rounded-md shadow-sm text-white  bg-gradient-to-r from-logocyan to-logopink hover:bg-gradient-to-r hover:from-teal-400 hover:to-pink-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
             >
-              🍭 Create POM
+              🍭 Create a POM
             </a>
           </Link>
         </button>
