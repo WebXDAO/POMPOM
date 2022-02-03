@@ -12,7 +12,9 @@ import store from "../store/store";
    const router = useRouter();
 
   // redirect user if no wallet address
-  if (!props.state.isAuthenticated) router.push('/')
+  // please fix this later :
+  // if (!props.state.isAuthenticated) { router.push('/') }
+  
   return (
     <div className="bg-white min-h-full">
       <Head>
@@ -22,9 +24,11 @@ import store from "../store/store";
 
       <main className="-mt-32">
           <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+
             {/* Replace with your content */}
             {children}
             {/* /End replace */}
+
           </div>
         </main>
     </div>

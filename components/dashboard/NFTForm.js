@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/userSlice";
+import { PROVIDER_DESCRIPTION_CLASSNAME } from "web3modal";
 
 export default function NFTForm() {
+
+    const userStore = useSelector(selectUser);
+
   // Usestate
   const [eventName, setEventName] = useState("");
 
@@ -10,6 +16,26 @@ export default function NFTForm() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  const mintNft = async (event) => {
+    event.preventDefault(); // prevent page reload
+
+    try {
+      console.log({
+        eventName: event.target.eventName.value,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        startTime: event.target.startTime.value,
+        endTime: event.target.endTime.value,
+        guestWallet: event.target.guestWallet.value,
+      });
+
+      // Add Form logics here
+    } catch (e) {
+      // throw error
+    }
+  };
+
+  // WIP for mongodb if ipfs struggle
   const registerEvent = async (event) => {
     event.preventDefault(); // prevent page reload
 
@@ -22,21 +48,6 @@ export default function NFTForm() {
       },
       method: "POST",
     });
-  };
-
-  const mintNft = async (event) => {
-    event.preventDefault(); // prevent page reload
-
-    console.log({
-      eventName: event.target.eventName.value,
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
-      startTime: event.target.startTime.value,
-      endTime: event.target.endTime.value,
-    });
-
-    // Add Form logics here
-
   };
 
   return (
@@ -139,11 +150,35 @@ export default function NFTForm() {
                           type="time"
                           name="endTime"
                           id="endTime"
+                          placeholder="endTime"
                           autoComplete="endTime"
                           className="mt-1 focus:ring-logopink focus:border-logopink block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                           required
                         />
                       </div>
+
+                        {/* Address sender */}
+
+                      
+                        <div className="col-span-6">
+                        <label
+                          htmlFor="eventName"
+                          className="block text-sm font-medium text-gray-700"
+                        >
+                          Guest Wallet
+                        </label>
+                        <input
+                          type="text"
+                          name="guestWallet"
+                          id="guestWallet"
+                          autoComplete="guestWallet"
+                          className="mt-1 focus:ring-logopink focus:border-logopink block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                          required
+                        />
+                      </div>
+
+
+                   
 
                       {/* 3 columns exemple :  */}
                       {/* <div className="col-span-6 sm:col-span-6 lg:col-span-2">
