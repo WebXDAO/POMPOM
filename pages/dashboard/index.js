@@ -48,7 +48,7 @@ function Index() {
                                     type="button"
                                     className="cursor-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
                                 >
-                                    Preview
+                                    Confirm POM
                                 </button>
                             </div>
                         ))}
