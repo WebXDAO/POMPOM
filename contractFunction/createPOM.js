@@ -9,9 +9,8 @@ export const mintNFT = async (guestWallet,uri) =>{
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)    
     const signer = provider.getSigner()
-    const web3 = new Web3(window.ethereum);
-    let contract = new ethers.Contract(POMContractAddress, POMPOMABI, signer)
-    let transaction = await contract.createPOM(guestWallet,uri)
+    let POMcontract = new ethers.Contract(POMContractAddress, POMPOMABI, signer)
+    let transaction = await POMcontract.createPOM(guestWallet,uri)
     let receipt = await transaction.wait()
     return receipt;
 };
