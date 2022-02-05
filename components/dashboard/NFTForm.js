@@ -3,27 +3,24 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/userSlice";
-import { PROVIDER_DESCRIPTION_CLASSNAME } from "web3modal";
-import { useWeb3React } from "@web3-react/core";
+// import { useWeb3React } from "@web3-react/core";
+import { mintNFT } from "../../contractFunction/createPOM";
 import { create as ipfsHttpClient } from "ipfs-http-client";
 const client = ipfsHttpClient("https://ipfs.infura.io:5001/api/v0");
-import Web3 from "web3";
-import { POMPOMABI } from "./../../abis/pompomabi";
-import { POMContractAddress } from "../../POMAddress";
 export default function NFTForm() {
 
   const userStore = useSelector(selectUser);
 
   // Usestate
   const [eventName, setEventName] = useState("");
-  const [guestWallet, setguestWallet] = useState("");
 
   // todo: update the date creation to get only the date
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  const { active, account } = useWeb3React();
+  // const { active, account } = useWeb3React();
   const createData = async (event) => {
     event.preventDefault(); // prevent page reload
+    const guestWallet = event.target.guestWallet.value
     console.log({
       eventName: event.target.eventName.value,
       startDate: startDate.toISOString(),
@@ -45,22 +42,17 @@ export default function NFTForm() {
       const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       /* after file is uploaded to IPFS, pass the URL to save it on Polygon */
       console.log(url);
-      createPOM(url, account);
+      console.log(guestWallet);
+      createPOM(guestWallet,url);
       // Add Form logics here
-    } catch (e) {
+    } catch (error) {
       // throw error
       console.log("Error uploading file: ", error);
     }
   };
-  const createPOM = async (url, account) => {
-    const web3 = new Web3(window.ethereum);
-    const POMInstance = new web3.eth.Contract(
-      POMPOMABI,
-      POMContractAddress
-    );
-    //work on this
-    const receipt = await POMInstance.methods.createPOM(guestWallet, url).send({ account });
-    return receipt;
+  const createPOM = async (guestWallet,url) => {
+    const receipt = await mintNFT(guestWallet, url);
+    console.log(receipt);
   };
 
   // WIP for mongodb if ipfs struggle
@@ -201,7 +193,6 @@ export default function NFTForm() {
                           id="guestWallet"
                           autoComplete="guestWallet"
                           className="mt-1 focus:ring-logopink focus:border-logopink block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                          onChange={(guestwalletAddr) => setguestWallet(guestwalletAddr)}
                           required
                         />
                       </div>
