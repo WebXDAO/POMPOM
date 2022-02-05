@@ -29,7 +29,7 @@ function Index() {
               <div className="px-4 py-8 sm:px-0">
                 <div className="border-4 border-dashed border-gray-200 rounded-lg" />
                     <div className="flex flex-col overflow-auto">
-                      <h2 className="text-2xl font-semibold text-center mt-4">You are host here</h2>
+                      <h2 className="text-2xl font-semibold text-center mt-4">You are the guest here</h2>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 m-10">
                         {poms.map((i) => (
                             <div

@@ -21,7 +21,7 @@ const myPom = () => {
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
               {/* Replace with your content */}
               <div className="flex flex-col overflow-auto">
-                      <h2 className="text-2xl font-semibold text-center mt-4">You are host here</h2>
+                      <h2 className="text-2xl font-semibold text-center mt-4">Proof of your meetings</h2>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 m-10">
                         {poms.map((i) => (
                             <div
