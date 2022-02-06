@@ -1,0 +1,1 @@
+export const POMContractAddress = "0xeadbddb4eb5559650691be99824c91015fc39256";
