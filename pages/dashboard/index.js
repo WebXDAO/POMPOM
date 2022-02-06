@@ -8,7 +8,7 @@ import NFTForm from "../../components/dashboard/NFTForm";
 import DashboardLayout from "../../layouts/DashboardLayout";
 import { selectUser } from "../../store/userSlice";
 import { inLine } from "../../contractFunction/POMInline";
-
+import { Confirm } from "../../contractFunction/confirmPOM";
 function Index() {
   const [poms, setpoms] = useState([])
   useEffect(() => {
@@ -18,6 +18,9 @@ function Index() {
     const items = await inLine();
     setpoms(items)
   };
+  const ConfirmPOM = async (pom) => {
+    await Confirm(pom)
+  }
   return (
     <DashboardLayout>
         <div className="py-10">
@@ -31,7 +34,7 @@ function Index() {
                     <div className="flex flex-col overflow-auto">
                       <h2 className="text-2xl font-semibold text-center mt-4">You are the guest here</h2>
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 m-10">
-                        {poms.map((i) => (
+                        {poms.map((pom,i) => (
                             <div
                                 key={i}
                                 className="cursor-pointer relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500"
@@ -41,12 +44,19 @@ function Index() {
                                 </div>
                                 <div className="flex-1 min-w-0">
                                         <span className="absolute inset-0" aria-hidden="true" />
-                                        <p className="text-sm font-medium text-gray-900">{i.eventName}</p>
-                                        <p className="text-sm text-gray-500 truncate">{i.startDate}</p>
+                                        <p className="text-sm font-medium text-gray-900">Event Name: {pom.eventName}</p>
+                                        <p className="text-sm text-gray-500 truncate">Start Date: {pom.startDate}</p>
+                                        <p className="text-sm text-gray-500 truncate">End Date: {pom.endDate}</p>
+                                        <p className="text-sm text-gray-500 truncate">Start Time: {pom.startTime}</p>
+                                        <p className="text-sm text-gray-500 truncate">End Time: {pom.endTime}</p>
+                                        <p className="text-sm text-gray-500 truncate">Host: {pom.host}</p>
+                                        <p className="text-sm text-gray-500 truncate">Guest: {pom.guest}</p>
+                                        <p className="text-sm text-gray-500 truncate">Token ID: {pom.tokenId}</p>
                                 </div>
-                                <button
+                                <button 
                                     type="button"
                                     className="cursor-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                                    onClick={() => ConfirmPOM(pom.tokenId)}
                                 >
                                     Confirm POM
                                 </button>
