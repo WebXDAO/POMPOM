@@ -4,7 +4,7 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 import { created } from "../../contractFunction/POMCreated";
 import { useEffect,useState } from "react";
 
-const myPom = () => {
+const MyPom = () => {
   const [poms, setpoms] = useState([])
   useEffect(() => {
     createdPOMs()
@@ -57,4 +57,4 @@ const myPom = () => {
     );
 }
 
-export default myPom;
+export default MyPom;
