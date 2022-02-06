@@ -58,9 +58,9 @@ function Hero2({ props }) {
                 </span>
               </h1>
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
-                Proof of Meeting - Anim aute id magna aliqua ad ad non deserunt
-                sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet
-                fugiat veniam occaecat fugiat aliqua ad ad non deserunt sunt.
+                POMPOM - a Proof Of Meeting recording service 
+                hosted on polygon blockchain that helps users 
+                to register their worth mentioning meeting records
               </p>
 
               {/* Show if not authenticated */}

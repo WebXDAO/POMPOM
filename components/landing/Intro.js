@@ -30,8 +30,10 @@ export default function Intro() {
             A proof of meeting
           </h2>
           <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
-            Discord popom. Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in,
-            accusamus quisquam.
+          Great ideas are created when curious minds meet. Such meetings are worth remembering. 
+          Posting a picture on twitter, instagram or cloud drive service is cool 
+          but, they might be taken down someday. Creating a POM will create your meeting records 
+          which are immutable and store them for forever on the blockchain. 
           </p>
         </div>
 
