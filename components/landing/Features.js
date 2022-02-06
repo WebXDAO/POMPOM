@@ -5,19 +5,19 @@ const features = [
   {
     name: 'Full controll',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Records are permanently stored on blockchain, so no one can change them',
     icon: GlobeAltIcon,
   },
   {
-    name: 'For business events',
+    name: 'For Any events',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Meeting with your business colleage, friend or great persobality',
     icon: ScaleIcon,
   },
   {
-    name: 'Transfers are instant',
+    name: 'POM is trustable',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'POM is only sucessful when the guest confirms the happening of event created by the host ',
     icon: LightningBoltIcon,
   },
 ]
