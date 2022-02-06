@@ -22,6 +22,7 @@ export const inLine = async () => {
             endTime: meta.data.endTime,
             host: i.host,
             guest: i.guest,
+            tokenId: i.tokenId.toNumber(),
         }
         return item
       }))
