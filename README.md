@@ -5,7 +5,7 @@
 </p>
 
 Meet PomPom, a *Proof of Meeting* Dapp cooking for ETHGlobal Polygon Hackaton.
-
+# Contracts are created in separated repo. Find them [here](https://github.com/WebXDAO/pompom-contracts)
 ## Getting Started
 
 First, run the development server :
