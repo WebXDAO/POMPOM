@@ -15,6 +15,7 @@ npm run dev
 # or
 yarn dev
 ```
+Contracts are created in separated repo. Find them [here](https://github.com/WebXDAO/pompom-contracts)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
